@@ -2,60 +2,74 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background/80 py-12">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+    <footer className="section-dark pt-16 pb-8 relative overflow-hidden">
+      {/* Glow */}
+      <div className="glow-orb w-96 h-96 -bottom-48 left-1/3 bg-primary/10" />
+
+      <div className="container mx-auto px-4 sm:px-6 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">ر</span>
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-9 h-9 rounded-xl btn-gradient flex items-center justify-center">
+                <span className="font-bold text-sm" style={{ color: 'white' }}>ر</span>
               </div>
-              <span className="font-bold text-lg text-background">ركائز العقارية</span>
+              <span className="font-bold text-lg" style={{ color: 'white' }}>ركائز العقارية</span>
             </div>
-            <p className="text-sm leading-relaxed opacity-70">
+            <p className="text-sm leading-relaxed" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
               شركة تطوير عقاري رائدة تسعى لصناعة بيئات عمرانية استثنائية في المملكة العربية السعودية.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="font-semibold text-background mb-4">روابط سريعة</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="opacity-70 hover:opacity-100 transition-opacity">الرئيسية</Link></li>
-              <li><Link to="/projects" className="opacity-70 hover:opacity-100 transition-opacity">المشاريع</Link></li>
-              <li><Link to="/about" className="opacity-70 hover:opacity-100 transition-opacity">من نحن</Link></li>
-              <li><Link to="/contact" className="opacity-70 hover:opacity-100 transition-opacity">تواصل معنا</Link></li>
+            <h4 className="font-bold mb-5" style={{ color: 'white' }}>روابط سريعة</h4>
+            <ul className="space-y-3 text-sm">
+              {[
+                { label: "الرئيسية", href: "/" },
+                { label: "المشاريع", href: "/projects" },
+                { label: "من نحن", href: "/about" },
+                { label: "تواصل معنا", href: "/contact" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link to={l.href} className="transition-all hover:text-primary-light" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-background mb-4">خدماتنا</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="opacity-70">التطوير العقاري</li>
-              <li className="opacity-70">التسويق العقاري</li>
-              <li className="opacity-70">إدارة الأملاك</li>
-              <li className="opacity-70">الاستشارات</li>
+            <h4 className="font-bold mb-5" style={{ color: 'white' }}>خدماتنا</h4>
+            <ul className="space-y-3 text-sm" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
+              <li>التطوير العقاري</li>
+              <li>التسويق العقاري</li>
+              <li>إدارة الأملاك</li>
+              <li>الاستشارات</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-background mb-4">تواصل معنا</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="opacity-70">info@rakaez.sa</li>
-              <li className="opacity-70" dir="ltr">+966 XX XXX XXXX</li>
-              <li className="opacity-70">المملكة العربية السعودية</li>
+            <h4 className="font-bold mb-5" style={{ color: 'white' }}>تواصل معنا</h4>
+            <ul className="space-y-3 text-sm" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
+              <li>info@rakaez.sa</li>
+              <li dir="ltr">+966 XX XXX XXXX</li>
+              <li>المملكة العربية السعودية</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-background/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs opacity-50">© 2025 ركائز العقارية. جميع الحقوق محفوظة.</p>
-          <div className="flex gap-4 text-xs opacity-50">
-            <span>سياسة الخصوصية</span>
-            <span>الشروط والأحكام</span>
+        {/* Divider */}
+        <div className="gold-line mb-6" />
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs" style={{ color: 'hsla(0,0%,100%,0.35)' }}>© 2025 ركائز العقارية. جميع الحقوق محفوظة.</p>
+          <div className="flex gap-6 text-xs" style={{ color: 'hsla(0,0%,100%,0.35)' }}>
+            <span className="hover:text-primary-light cursor-pointer transition-colors">سياسة الخصوصية</span>
+            <span className="hover:text-primary-light cursor-pointer transition-colors">الشروط والأحكام</span>
           </div>
         </div>
       </div>

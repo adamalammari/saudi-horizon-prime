@@ -1,5 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
@@ -23,14 +23,19 @@ const TestimonialsSection = () => {
   const sectionRef = useScrollAnimation();
 
   return (
-    <section ref={sectionRef} className="section-padding bg-muted/30">
-      <div className="container mx-auto">
-        <div className="text-center mb-12" data-animate="fade-up">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">ماذا يقول عملاؤنا</h2>
+    <section ref={sectionRef} className="section-padding relative">
+      <div className="glow-orb w-80 h-80 top-10 right-10 bg-accent/8" />
+
+      <div className="container mx-auto relative">
+        <div className="text-center mb-14" data-animate="fade-up">
+          <span className="inline-block text-xs font-semibold tracking-wider text-primary mb-3 uppercase">آراء العملاء</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            ماذا يقول <span className="text-gradient">عملاؤنا</span>
+          </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
             ثقة عملائنا هي أكبر شهادة على جودة خدماتنا
           </p>
-          <div className="gold-line max-w-24 mx-auto mt-4" />
+          <div className="gold-line max-w-20 mx-auto mt-5" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -38,17 +43,23 @@ const TestimonialsSection = () => {
             <div
               key={i}
               data-animate="fade-up"
-              className="bg-card p-6 rounded-2xl border border-border card-hover"
+              className="relative p-7 rounded-3xl card-hover gradient-border bg-card"
             >
-              <div className="flex gap-1 mb-4">
+              <Quote size={32} className="text-primary/10 mb-4" />
+              <div className="flex gap-1 mb-5">
                 {[...Array(5)].map((_, s) => (
                   <Star key={s} size={14} className="fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-foreground leading-relaxed mb-6">"{t.text}"</p>
-              <div>
-                <p className="font-semibold text-foreground text-sm">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
+              <p className="text-sm text-foreground leading-relaxed mb-8">"{t.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl btn-gradient flex items-center justify-center">
+                  <span className="text-sm font-bold" style={{ color: 'white' }}>{t.name[0]}</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground text-sm">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </div>
               </div>
             </div>
           ))}

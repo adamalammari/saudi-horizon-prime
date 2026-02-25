@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -33,43 +34,48 @@ const FeaturedProjects = () => {
   );
 
   return (
-    <section ref={sectionRef} className="section-padding">
-      <div className="container mx-auto">
-        <div className="text-center mb-12" data-animate="fade-up">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">مشاريعنا المميزة</h2>
+    <section ref={sectionRef} className="section-padding relative">
+      {/* Glow */}
+      <div className="glow-orb w-80 h-80 top-0 left-1/4 bg-primary/5" />
+
+      <div className="container mx-auto relative">
+        <div className="text-center mb-14" data-animate="fade-up">
+          <span className="inline-block text-xs font-semibold tracking-wider text-primary mb-3 uppercase">مشاريعنا</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            مشاريع <span className="text-gradient">مميزة</span>
+          </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
             نقدم مشاريع عقارية متنوعة تلبي تطلعاتكم في أبرز المدن السعودية
           </p>
-          <div className="gold-line max-w-24 mx-auto mt-4" />
+          <div className="gold-line max-w-20 mx-auto mt-5" />
         </div>
 
         {/* Filters */}
-        <div data-animate="fade-up" data-delay="0.1" className="flex flex-wrap justify-center gap-3 mb-10">
-          <div className="flex gap-2 flex-wrap justify-center">
+        <div data-animate="fade-up" data-delay="0.1" className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex gap-2 flex-wrap justify-center p-1.5 rounded-2xl bg-muted/60">
             {cities.map((c) => (
               <button
                 key={c}
                 onClick={() => setCityFilter(c)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                   cityFilter === c
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-muted"
+                    ? "btn-gradient shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {c}
               </button>
             ))}
           </div>
-          <div className="w-px bg-border hidden sm:block" />
-          <div className="flex gap-2">
+          <div className="flex gap-2 p-1.5 rounded-2xl bg-muted/60">
             {statuses.map((s) => (
               <button
                 key={s}
                 onClick={() => setStatusFilter(s)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                   statusFilter === s
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-muted"
+                    ? "btn-gradient shadow-md"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {s}
@@ -79,43 +85,56 @@ const FeaturedProjects = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filtered.map((project) => (
             <div
               key={project.id}
               data-animate="fade-up"
-              className="group bg-card rounded-2xl overflow-hidden border border-border card-hover"
+              className="group rounded-3xl overflow-hidden card-hover gradient-border bg-card"
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-60 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3">
+                {/* Overlay gradient on image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-4 left-4">
                   <span
-                    className={`px-3 py-1 rounded-lg text-xs font-medium ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold backdrop-blur-md ${
                       project.status === "جاهز"
-                        ? "bg-primary/90 text-primary-foreground"
-                        : "bg-accent/90 text-accent-foreground"
+                        ? "bg-primary/85 text-primary-foreground"
+                        : "bg-accent/85 text-accent-foreground"
                     }`}
                   >
                     {project.status}
                   </span>
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-semibold text-lg text-foreground mb-2">{project.name}</h3>
-                <div className="flex items-center gap-1 text-muted-foreground text-sm">
-                  <MapPin size={14} />
+              <div className="p-6">
+                <h3 className="font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">{project.name}</h3>
+                <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
+                  <MapPin size={14} className="text-primary/60" />
                   <span>{project.city}</span>
-                  <span className="mx-2">·</span>
+                  <span className="mx-1.5 text-border">|</span>
                   <span>{project.type}</span>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View all CTA */}
+        <div className="text-center mt-12" data-animate="fade-up">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
+          >
+            عرض جميع المشاريع
+            <ArrowLeft size={16} />
+          </Link>
         </div>
       </div>
     </section>
