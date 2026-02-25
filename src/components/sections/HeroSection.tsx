@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-building.jpg";
 
 const HeroSection = () => {
@@ -13,25 +14,30 @@ const HeroSection = () => {
         <img
           src={heroImg}
           alt="مبنى عقاري حديث"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-105"
           loading="eager"
         />
       </div>
 
-      {/* Overlay */}
+      {/* Gradient overlay */}
       <div className="absolute inset-0 hero-overlay" />
 
-      {/* Geometric pattern overlay */}
-      <div className="absolute inset-0 geometric-pattern opacity-30" />
+      {/* Geometric pattern */}
+      <div className="absolute inset-0 geometric-pattern opacity-20" />
+
+      {/* Glow orbs */}
+      <div className="glow-orb w-96 h-96 -top-20 -right-20 bg-primary/20 animate-float" />
+      <div className="glow-orb w-72 h-72 bottom-20 left-10 bg-accent/15 animate-float-delayed" />
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-20">
         <div className="max-w-2xl">
           <div
             data-animate="fade-up"
-            className="inline-block mb-4 px-4 py-1.5 rounded-full border border-border bg-card/80 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full glass-dark"
           >
-            <span className="text-xs sm:text-sm text-muted-foreground font-medium">
+            <Sparkles size={14} className="text-accent" />
+            <span className="text-xs sm:text-sm font-medium" style={{ color: 'hsla(0,0%,100%,0.85)' }}>
               شريكك الموثوق في التطوير العقاري
             </span>
           </div>
@@ -39,17 +45,19 @@ const HeroSection = () => {
           <h1
             data-animate="fade-up"
             data-delay="0.1"
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.15] mb-6"
+            style={{ color: 'white' }}
           >
             نبني مستقبل
             <br />
-            <span className="text-gradient">العقار السعودي</span>
+            <span className="shimmer-text">العقار السعودي</span>
           </h1>
 
           <p
             data-animate="fade-up"
             data-delay="0.2"
-            className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg"
+            className="text-base sm:text-lg leading-relaxed mb-10 max-w-lg"
+            style={{ color: 'hsla(0,0%,100%,0.75)' }}
           >
             نطور مشاريع سكنية وتجارية بأعلى معايير الجودة والابتكار، لنصنع بيئات عمرانية تجمع بين الفخامة والراحة.
           </p>
@@ -61,22 +69,43 @@ const HeroSection = () => {
           >
             <Link
               to="/projects"
-              className="bg-primary text-primary-foreground px-8 py-3.5 rounded-xl text-sm font-semibold btn-primary-glow transition-all hover:opacity-90 text-center"
+              className="btn-gradient px-8 py-4 rounded-2xl text-sm font-semibold text-center inline-flex items-center justify-center gap-2"
             >
               استعرض المشاريع
+              <ArrowLeft size={16} />
             </Link>
             <Link
               to="/contact"
-              className="border border-border bg-card/60 backdrop-blur-sm text-foreground px-8 py-3.5 rounded-xl text-sm font-semibold transition-all hover:bg-card text-center"
+              className="btn-glass px-8 py-4 rounded-2xl text-sm font-semibold text-center"
             >
-              احجز استشارة
+              احجز استشارة مجانية
             </Link>
+          </div>
+
+          {/* Mini stats */}
+          <div
+            data-animate="fade-up"
+            data-delay="0.5"
+            className="mt-14 flex gap-8 sm:gap-12"
+          >
+            {[
+              { val: "+12", label: "سنة خبرة" },
+              { val: "+40", label: "مشروع" },
+              { val: "+1200", label: "وحدة" },
+            ].map((s) => (
+              <div key={s.label}>
+                <div className="text-2xl sm:text-3xl font-bold" style={{ color: 'white' }}>{s.val}</div>
+                <div className="text-xs mt-1" style={{ color: 'hsla(0,0%,100%,0.5)' }}>{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom gold line */}
-      <div className="absolute bottom-0 left-0 right-0 gold-line" />
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32" style={{
+        background: 'linear-gradient(to top, hsl(220, 20%, 97%), transparent)'
+      }} />
     </section>
   );
 };
