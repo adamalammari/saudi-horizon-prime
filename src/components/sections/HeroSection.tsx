@@ -32,15 +32,6 @@ const HeroSection = () => {
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-20">
         <div className="max-w-2xl">
-          <div
-            data-animate="fade-up"
-            className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full glass-dark"
-          >
-            <Sparkles size={14} className="text-accent" />
-            <span className="text-xs sm:text-sm font-medium" style={{ color: 'hsla(0,0%,100%,0.85)' }}>
-              شريكك الموثوق في التطوير العقاري
-            </span>
-          </div>
 
           <h1
             data-animate="fade-up"
