@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
     <footer className="section-dark pt-16 pb-8 relative overflow-hidden">
-      {/* Glow */}
       <div className="glow-orb w-96 h-96 -bottom-48 left-1/3 bg-primary/10" />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
@@ -11,9 +11,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-xl btn-gradient flex items-center justify-center">
-                <span className="font-bold text-sm" style={{ color: 'white' }}>ر</span>
-              </div>
+              <img src={logo} alt="ركائز العقارية" className="h-10 w-auto brightness-0 invert" />
               <span className="font-bold text-lg" style={{ color: 'white' }}>ركائز العقارية</span>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
@@ -56,13 +54,12 @@ const Footer = () => {
             <h4 className="font-bold mb-5" style={{ color: 'white' }}>تواصل معنا</h4>
             <ul className="space-y-3 text-sm" style={{ color: 'hsla(0,0%,100%,0.55)' }}>
               <li>info@rakaez.sa</li>
-              <li dir="ltr">+966 XX XXX XXXX</li>
+              <li dir="ltr">0551234567</li>
               <li>المملكة العربية السعودية</li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
         <div className="gold-line mb-6" />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

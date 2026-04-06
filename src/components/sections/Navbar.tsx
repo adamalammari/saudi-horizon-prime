@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "الرئيسية", href: "/" },
@@ -32,9 +33,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl btn-gradient flex items-center justify-center shadow-lg">
-            <span className="font-bold text-sm sm:text-lg" style={{ color: 'white' }}>ر</span>
-          </div>
+          <img src={logo} alt="ركائز العقارية" className="h-10 sm:h-12 w-auto" />
           <span className="font-bold text-lg sm:text-xl text-foreground">
             ركائز <span className="text-gradient">العقارية</span>
           </span>

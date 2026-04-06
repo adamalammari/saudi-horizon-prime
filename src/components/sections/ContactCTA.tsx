@@ -37,7 +37,7 @@ const ContactCTA = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">اتصل بنا</p>
-                  <p className="text-sm font-semibold text-foreground" dir="ltr">+966 XX XXX XXXX</p>
+                  <p className="text-sm font-semibold text-foreground" dir="ltr">0551234567</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 rounded-2xl glass">
